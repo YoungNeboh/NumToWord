@@ -125,14 +125,18 @@ const convertNum = (num) => {
         let result = resultArray.join(""); //join everything into one sentence
         return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const resultArray = []; //create array to hold the words and their suffixes
-      for (i = 0; i < words.length; i++) {
-        resultArray.push(words[i]);
-        resultArray.push(suffixes[i]);
-      }
-      let result = resultArray.join(""); //join everything into one sentence
-      return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000) {
@@ -194,14 +198,18 @@ const convertNum = (num) => {
         let result = resultArray.join(""); //join everything into one sentence
         return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const resultArray = []; //create array to hold the words and their suffixes
-      for (i = 0; i < words.length; i++) {
-        resultArray.push(words[i]);
-        resultArray.push(suffixes[i]);
-      }
-      let result = resultArray.join(""); //join everything into one sentence
-      return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000000) {
@@ -273,14 +281,18 @@ const convertNum = (num) => {
         let result = resultArray.join(""); //join everything into one sentence
         return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const resultArray = []; //create array to hold the words and their suffixes
-      for (i = 0; i < words.length; i++) {
-        resultArray.push(words[i]);
-        resultArray.push(suffixes[i]);
-      }
-      let result = resultArray.join(""); //join everything into one sentence
-      return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000000000) {
@@ -369,14 +381,18 @@ const convertNum = (num) => {
         let result = resultArray.join(""); //join everything into one sentence
         return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const resultArray = []; //create array to hold the words and their suffixes
-      for (i = 0; i < words.length; i++) {
-        resultArray.push(words[i]);
-        resultArray.push(suffixes[i]);
-      }
-      let result = resultArray.join(""); //join everything into one sentence
-      return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
   if (newnum >= 1000000000000000) {
     return "Plese type a number from 1 - 999999999999999";
