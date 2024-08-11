@@ -75,8 +75,6 @@ h1 {
 
 #convertNum {
   text-align: center;
-  min-height: 100px;
-  width: 400px;
   padding: 1.5rem 2rem;
 }
 
@@ -140,7 +138,7 @@ input:focus {
     font-size: 0.7rem;
   }
   #convertNum {
-    width: 250px;
+    width: 150px;
     height: 40px;
   }
 }
