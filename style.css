@@ -117,6 +117,7 @@ input {
   box-sizing: border-box;
   border-bottom: 2px solid #89c2d9;
   text-align: center;
+  font-size: 16px;
   /* transition: border-bottom 0.5s; */
 }
 
