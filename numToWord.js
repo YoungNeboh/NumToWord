@@ -95,37 +95,48 @@ const convertNum = (num) => {
     } else {
       hundred = convertHundreds(newnum % 1000);
     }
-    const suffixMap = new Map();
 
-    suffixMap.set(thousand, " thousand, ");
-    suffixMap.set(hundred, "");
+    let words = [thousand, hundred];
+    let suffixes = [" thousand, ", ""];
 
-    for (const key of suffixMap.keys()) {
-      if (key === "") {
-        suffixMap.delete(key);
+    let indicesToRemove = []; //an array to store the indice of elements that are empty (only have 000)
+    for (let word in words) {
+      if (words[word] === "") {
+        indicesToRemove.push(word);
       }
     }
-    if (suffixMap.has(hundred)) {
+    let sorted = indicesToRemove.sort((a, b) => b - a);
+    //sort the indicesToRemove array in reverse so that removing the indices from words does not cause clashes due to rearranging index
+    for (let index of sorted) {
+      words.splice(Number(index), 1); //remove any empty value from the array
+      suffixes.splice(Number(index), 1); // do the same to the suffixes array
+    }
+    if (words.includes(hundred)) {
       if ((newnum % 1000).toString().length < 3) {
         //check if hundred is less than three digits
-        const fullWordsArray = Array.from(suffixMap); // convert suffixMap into an array
-        const index = fullWordsArray.findIndex((array) => array[1] === "");
-        let toEditIndex = fullWordsArray[index - 1];
-        let editedIndex = toEditIndex[1].replace(",", " and"); // replace , with 'and' for any suffix that appears before hundred
-        const indexToReplace = fullWordsArray.findIndex((innerArray) =>
-          innerArray.every((value, index) => value === toEditIndex[index])
-        );
-        fullWordsArray[indexToReplace][1] = editedIndex; // replace the suffix in the original array with the modified one
-
-        const stringArray = fullWordsArray.map((subarray) => subarray.join("")); // convert the array of arrays into an array of strings
-        let result = stringArray.join(""); //converts the array of strings into one string
-        return result[0].toUpperCase() + result.slice(1) + ".";
+        let hunIndex = words.indexOf(hundred);
+        let toEditIndex = hunIndex - 1; //find the index of the element before hundred
+        suffixes[toEditIndex] = suffixes[toEditIndex].replace(", ", " and "); //replace ',' with ' and ' for grammar
+        const resultArray = []; //create array to hold the words and their suffixes
+        for (i = 0; i < words.length; i++) {
+          resultArray.push(words[i]);
+          resultArray.push(suffixes[i]);
+        }
+        let result = resultArray.join(""); //join everything into one sentence
+        return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const fullWordsArray = Array.from(suffixMap);
-      const stringArray = fullWordsArray.map((subarray) => subarray.join(""));
-      let result = stringArray.join("");
-      return result[0].toUpperCase() + result.slice(1) + "."; // handle the punctuation when hundred is three digits long
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000) {
@@ -157,38 +168,48 @@ const convertNum = (num) => {
     } else {
       hundred = convertHundreds(remainder % 1000);
     }
-    const suffixMap = new Map();
 
-    suffixMap.set(million, " million, ");
-    suffixMap.set(thousand, " thousand, ");
-    suffixMap.set(hundred, "");
+    let words = [million, thousand, hundred];
+    let suffixes = [" million, ", " thousand, ", ""];
 
-    for (const key of suffixMap.keys()) {
-      if (key === "") {
-        suffixMap.delete(key);
+    let indicesToRemove = []; //an array to store the indice of elements that are empty (only have 000)
+    for (let word in words) {
+      if (words[word] === "") {
+        indicesToRemove.push(word);
       }
     }
-    if (suffixMap.has(hundred)) {
+    let sorted = indicesToRemove.sort((a, b) => b - a);
+    //sort the indicesToRemove array in reverse so that removing the indices from words does not cause clashes due to rearranging index
+    for (let index of sorted) {
+      words.splice(Number(index), 1); //remove any empty value from the array
+      suffixes.splice(Number(index), 1); // do the same to the suffixes array
+    }
+    if (words.includes(hundred)) {
       if ((remainder % 1000).toString().length < 3) {
         //check if hundred is less than three digits
-        const fullWordsArray = Array.from(suffixMap); // convert suffixMap into an array
-        const index = fullWordsArray.findIndex((array) => array[1] === "");
-        let toEditIndex = fullWordsArray[index - 1];
-        let editedIndex = toEditIndex[1].replace(",", " and"); // replace , with 'and' for any suffix that appears before hundred
-        const indexToReplace = fullWordsArray.findIndex((innerArray) =>
-          innerArray.every((value, index) => value === toEditIndex[index])
-        );
-        fullWordsArray[indexToReplace][1] = editedIndex; // replace the suffix in the original array with the modified one
-
-        const stringArray = fullWordsArray.map((subarray) => subarray.join("")); // convert the array of arrays into an array of strings
-        let result = stringArray.join(""); //converts the array of strings into one string
-        return result[0].toUpperCase() + result.slice(1) + ".";
+        let hunIndex = words.indexOf(hundred);
+        let toEditIndex = hunIndex - 1; //find the index of the element before hundred
+        suffixes[toEditIndex] = suffixes[toEditIndex].replace(", ", " and "); //replace ',' with ' and ' for grammar
+        const resultArray = []; //create array to hold the words and their suffixes
+        for (i = 0; i < words.length; i++) {
+          resultArray.push(words[i]);
+          resultArray.push(suffixes[i]);
+        }
+        let result = resultArray.join(""); //join everything into one sentence
+        return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const fullWordsArray = Array.from(suffixMap);
-      const stringArray = fullWordsArray.map((subarray) => subarray.join(""));
-      let result = stringArray.join("");
-      return result[0].toUpperCase() + result.slice(1) + "."; // handle the punctuation when hundred is three digits long
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000000) {
@@ -231,39 +252,47 @@ const convertNum = (num) => {
       hundred = convertHundreds(remainderB % 1000);
     }
 
-    const suffixMap = new Map();
+    let words = [billion, million, thousand, hundred];
+    let suffixes = [" billion, ", " million, ", " thousand, ", ""];
 
-    suffixMap.set(billion, " billion, ");
-    suffixMap.set(million, " million, ");
-    suffixMap.set(thousand, " thousand, ");
-    suffixMap.set(hundred, "");
-
-    for (const key of suffixMap.keys()) {
-      if (key === "") {
-        suffixMap.delete(key);
+    let indicesToRemove = []; //an array to store the indice of elements that are empty (only have 000)
+    for (let word in words) {
+      if (words[word] === "") {
+        indicesToRemove.push(word);
       }
     }
-    if (suffixMap.has(hundred)) {
+    let sorted = indicesToRemove.sort((a, b) => b - a);
+    //sort the indicesToRemove array in reverse so that removing the indices from words does not cause clashes due to rearranging index
+    for (let index of sorted) {
+      words.splice(Number(index), 1); //remove any empty value from the array
+      suffixes.splice(Number(index), 1); // do the same to the suffixes array
+    }
+    if (words.includes(hundred)) {
       if ((remainderB % 1000).toString().length < 3) {
         //check if hundred is less than three digits
-        const fullWordsArray = Array.from(suffixMap); // convert suffixMap into an array
-        const index = fullWordsArray.findIndex((array) => array[1] === "");
-        let toEditIndex = fullWordsArray[index - 1];
-        let editedIndex = toEditIndex[1].replace(",", " and"); // replace , with 'and' for any suffix that appears before hundred
-        const indexToReplace = fullWordsArray.findIndex((innerArray) =>
-          innerArray.every((value, index) => value === toEditIndex[index])
-        );
-        fullWordsArray[indexToReplace][1] = editedIndex; // replace the suffix in the original array with the modified one
-
-        const stringArray = fullWordsArray.map((subarray) => subarray.join("")); // convert the array of arrays into an array of strings
-        let result = stringArray.join(""); //converts the array of strings into one string
-        return result[0].toUpperCase() + result.slice(1) + ".";
+        let hunIndex = words.indexOf(hundred);
+        let toEditIndex = hunIndex - 1; //find the index of the element before hundred
+        suffixes[toEditIndex] = suffixes[toEditIndex].replace(", ", " and "); //replace ',' with ' and ' for grammar
+        const resultArray = []; //create array to hold the words and their suffixes
+        for (i = 0; i < words.length; i++) {
+          resultArray.push(words[i]);
+          resultArray.push(suffixes[i]);
+        }
+        let result = resultArray.join(""); //join everything into one sentence
+        return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const fullWordsArray = Array.from(suffixMap);
-      const stringArray = fullWordsArray.map((subarray) => subarray.join(""));
-      let result = stringArray.join("");
-      return result[0].toUpperCase() + result.slice(1) + "."; // handle the punctuation when hundred is three digits long
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
   }
 
   if (newnum < 1000000000000000) {
@@ -316,45 +345,61 @@ const convertNum = (num) => {
     } else {
       hundred = convertHundreds(remainderC % 1000);
     }
-    const suffixMap = new Map();
 
-    suffixMap.set(trillion, " trillion, ");
-    suffixMap.set(billion, " billion, ");
-    suffixMap.set(million, " million, ");
-    suffixMap.set(thousand, " thousand, ");
-    suffixMap.set(hundred, "");
+    let words = [trillion, billion, million, thousand, hundred];
+    let suffixes = [
+      " trillion, ",
+      " billion, ",
+      " million, ",
+      " thousand, ",
+      "",
+    ];
 
-    for (const key of suffixMap.keys()) {
-      if (key === "") {
-        suffixMap.delete(key);
+    let indicesToRemove = []; //an array to store the indice of elements that are empty (only have 000)
+    for (let word in words) {
+      if (words[word] === "") {
+        indicesToRemove.push(word);
       }
     }
-    if (suffixMap.has(hundred)) {
+    let sorted = indicesToRemove.sort((a, b) => b - a);
+    //sort the indicesToRemove array in reverse so that removing the indices from words does not cause clashes due to rearranging index
+    for (let index of sorted) {
+      words.splice(Number(index), 1); //remove any empty value from the array
+      suffixes.splice(Number(index), 1); // do the same to the suffixes array
+    }
+    if (words.includes(hundred)) {
       if ((remainderC % 1000).toString().length < 3) {
         //check if hundred is less than three digits
-        const fullWordsArray = Array.from(suffixMap); // convert suffixMap into an array
-        const index = fullWordsArray.findIndex((array) => array[1] === "");
-        let toEditIndex = fullWordsArray[index - 1];
-        let editedIndex = toEditIndex[1].replace(",", " and"); // replace , with 'and' for any suffix that appears before hundred
-        const indexToReplace = fullWordsArray.findIndex((innerArray) =>
-          innerArray.every((value, index) => value === toEditIndex[index])
-        );
-        fullWordsArray[indexToReplace][1] = editedIndex; // replace the suffix in the original array with the modified one
-
-        const stringArray = fullWordsArray.map((subarray) => subarray.join("")); // convert the array of arrays into an array of strings
-        let result = stringArray.join(""); //converts the array of strings into one string
-        return result[0].toUpperCase() + result.slice(1) + ".";
+        let hunIndex = words.indexOf(hundred);
+        let toEditIndex = hunIndex - 1; //find the index of the element before hundred
+        suffixes[toEditIndex] = suffixes[toEditIndex].replace(", ", " and "); //replace ',' with ' and ' for grammar
+        const resultArray = []; //create array to hold the words and their suffixes
+        for (i = 0; i < words.length; i++) {
+          resultArray.push(words[i]);
+          resultArray.push(suffixes[i]);
+        }
+        let result = resultArray.join(""); //join everything into one sentence
+        return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
       }
-      const fullWordsArray = Array.from(suffixMap);
-      const stringArray = fullWordsArray.map((subarray) => subarray.join(""));
-      let result = stringArray.join("");
-      return result[0].toUpperCase() + result.slice(1) + "."; // handle the punctuation when hundred is three digits long
     }
+    let resultArray = []; //create array to hold the words and their suffixes
+    for (i = 0; i < words.length; i++) {
+      resultArray.push(words[i]);
+      resultArray.push(suffixes[i]);
+    }
+    console.log(resultArray);
+    resultArray[resultArray.length - 1] = resultArray[
+      resultArray.length - 1
+    ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
+    let result = resultArray.join(""); //join everything into one sentence
+    return result[0].toUpperCase() + result.slice(1) + "."; //make first letter uppercase and add full stop
+  }
+  if (newnum >= 1000000000000000) {
+    return "Plese type a number from 1 - 999999999999999";
   }
 };
 
 let rawNum;
-
 document.getElementById("submitBtn").onclick = function () {
   rawNum = document.getElementById("rawNum").value;
   document.getElementById("convertNum").textContent = convertNum(rawNum);
@@ -363,3 +408,12 @@ document.getElementById("submitBtn").onclick = function () {
 document.getElementById("resetBtn").onclick = function () {
   window.location.href = window.location.href;
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  inputElement = document.getElementById("rawNum");
+
+  inputElement.addEventListener("input", (event) => {
+    const inputValue = event.target.value;
+    document.getElementById("convertNum").textContent = convertNum(inputValue);
+  });
+});
