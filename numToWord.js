@@ -131,7 +131,6 @@ const convertNum = (num) => {
       resultArray.push(words[i]);
       resultArray.push(suffixes[i]);
     }
-    console.log(resultArray);
     resultArray[resultArray.length - 1] = resultArray[
       resultArray.length - 1
     ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
@@ -204,7 +203,6 @@ const convertNum = (num) => {
       resultArray.push(words[i]);
       resultArray.push(suffixes[i]);
     }
-    console.log(resultArray);
     resultArray[resultArray.length - 1] = resultArray[
       resultArray.length - 1
     ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
@@ -287,7 +285,6 @@ const convertNum = (num) => {
       resultArray.push(words[i]);
       resultArray.push(suffixes[i]);
     }
-    console.log(resultArray);
     resultArray[resultArray.length - 1] = resultArray[
       resultArray.length - 1
     ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred
@@ -387,7 +384,6 @@ const convertNum = (num) => {
       resultArray.push(words[i]);
       resultArray.push(suffixes[i]);
     }
-    console.log(resultArray);
     resultArray[resultArray.length - 1] = resultArray[
       resultArray.length - 1
     ].replace(", ", ""); //replace ',' with empty string '' for the last suffix since there is no hundred

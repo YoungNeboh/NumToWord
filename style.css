@@ -148,7 +148,7 @@ input:focus {
 
 @media (max-width: 400px) {
   #convertNum {
-    width: 150px;
+    width: 170px;
     height: 30px;
   }
 }
