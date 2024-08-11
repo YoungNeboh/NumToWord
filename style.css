@@ -75,6 +75,8 @@ h1 {
 
 #convertNum {
   text-align: center;
+  min-height: 100px;
+  width: 400px;
   padding: 1.5rem 2rem;
 }
 
@@ -140,5 +142,12 @@ input:focus {
   #convertNum {
     width: 200px;
     height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  #convertNum {
+    width: 150px;
+    height: 30px;
   }
 }
